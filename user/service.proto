@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+service UserService {
+  rpc getUser (GetUserRequest) returns (GetUserResponse);
+  rpc getUsers (GetUsersRequest) returns (GetUsersResponse);
+  rpc createUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc updateUser (UpdateUserRequest) returns (UpdateUserResponse);
+  rpc deleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+}
+
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  bool verified = 4;
+}
+
+message UserList {
+  repeated User users = 1;
+}
+
+message Meta {
+  int32 page = 1;
+  int32 perPage = 2;
+  int32 count = 3;
+  int32 totalCount = 4;
+}
+
+message UsersWithMeta {
+  UserList users = 1;
+  Meta meta = 2;
+}
+
+message Error {
+  int32 code = 1; // Código de error, como los códigos de estado HTTP
+  string message = 2; // Mensaje de error descriptivo
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetUserResponse {
+  oneof result {
+    User user = 1;
+    Error error = 2;
+  }
+}
+
+message GetUsersRequest {
+  int32 page = 1;
+  int32 limit = 2;
+}
+
+message GetUsersResponse {
+  oneof result {
+    UsersWithMeta data = 1;
+    Error error = 2;
+  }
+}
+
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message CreateUserResponse {
+  oneof result {
+    User user = 1;
+    Error error = 2;
+  }
+}
+
+message UpdateUserRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string email = 3;
+  optional bool verified = 4;
+}
+
+message UpdateUserResponse {
+  oneof result {
+    User user = 1;
+    Error error = 2;
+  }
+}
+
+message DeleteUserRequest {
+  string id = 1;
+}
+
+message DeleteUserResponse {
+  oneof result {
+    bool success = 1;
+    Error error = 2;
+  }
+}

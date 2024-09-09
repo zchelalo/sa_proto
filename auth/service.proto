@@ -24,20 +24,16 @@ message Error {
   string message = 2; // Mensaje de error descriptivo
 }
 
-message Response {
-  oneof result {
-    Auth auth = 1;
-    Error error = 2;
-  }
-}
-
 message SignInRequest {
   string email = 1;
   string password = 2;
 }
 
 message SignInResponse {
-  Response response = 1;
+  oneof result {
+    Auth auth = 1;
+    Error error = 2;
+  }
 }
 
 message SignUpRequest {
@@ -47,7 +43,10 @@ message SignUpRequest {
 }
 
 message SignUpResponse {
-  Response response = 1;
+  oneof result {
+    Auth auth = 1;
+    Error error = 2;
+  }
 }
 
 message SignOutRequest {
@@ -55,5 +54,8 @@ message SignOutRequest {
 }
 
 message SignOutResponse {
-  bool success = 1;
+  oneof result {
+    bool success = 1;
+    Error error = 2;
+  }
 }
