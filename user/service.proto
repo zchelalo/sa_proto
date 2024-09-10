@@ -2,7 +2,7 @@ syntax = "proto3";
 
 service UserService {
   rpc getUser (GetUserRequest) returns (GetUserResponse);
-  rpc getUserByEmail (GetUserByEmailRequest) returns (GetUserByEmailResponse);
+  rpc getUserPasswordHash (GetUserPasswordHashRequest) returns (GetUserPasswordHashResponse);
   rpc getUsers (GetUsersRequest) returns (GetUsersResponse);
   rpc createUser (CreateUserRequest) returns (CreateUserResponse);
   rpc updateUser (UpdateUserRequest) returns (UpdateUserResponse);
@@ -46,13 +46,13 @@ message GetUserResponse {
   }
 }
 
-message GetUserByEmailRequest {
+message GetUserPasswordHashRequest {
   string email = 1;
 }
 
-message GetUserByEmailResponse {
+message GetUserPasswordHashResponse {
   oneof result {
-    User user = 1;
+    string hash = 1;
     Error error = 2;
   }
 }
