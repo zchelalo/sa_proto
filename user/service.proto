@@ -18,6 +18,11 @@ message User {
   bool verified = 4;
 }
 
+message PasswordHashAndId {
+  string id = 1;
+  string hash = 2;
+}
+
 message Meta {
   int32 page = 1;
   int32 perPage = 2;
@@ -52,7 +57,7 @@ message GetUserPasswordHashRequest {
 
 message GetUserPasswordHashResponse {
   oneof result {
-    string hash = 1;
+    PasswordHashAndId data = 1;
     Error error = 2;
   }
 }
