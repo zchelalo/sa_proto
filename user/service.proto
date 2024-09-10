@@ -2,7 +2,7 @@ syntax = "proto3";
 
 service UserService {
   rpc getUser (GetUserRequest) returns (GetUserResponse);
-  rpc getUserPasswordHash (GetUserPasswordHashRequest) returns (GetUserPasswordHashResponse);
+  rpc getUserToAuth (GetUserToAuthRequest) returns (GetUserToAuthResponse);
   rpc getUsers (GetUsersRequest) returns (GetUsersResponse);
   rpc createUser (CreateUserRequest) returns (CreateUserResponse);
   rpc updateUser (UpdateUserRequest) returns (UpdateUserResponse);
@@ -18,9 +18,12 @@ message User {
   bool verified = 4;
 }
 
-message PasswordHashAndId {
+message UserWithPassword {
   string id = 1;
-  string hash = 2;
+  string name = 2;
+  string email = 3;
+  string password = 4;
+  bool verified = 5;
 }
 
 message Meta {
@@ -51,13 +54,13 @@ message GetUserResponse {
   }
 }
 
-message GetUserPasswordHashRequest {
+message GetUserToAuthRequest {
   string email = 1;
 }
 
-message GetUserPasswordHashResponse {
+message GetUserToAuthResponse {
   oneof result {
-    PasswordHashAndId data = 1;
+    UserWithPassword user = 1;
     Error error = 2;
   }
 }
