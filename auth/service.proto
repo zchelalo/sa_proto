@@ -6,6 +6,8 @@ service AuthService {
   rpc signOut (SignOutRequest) returns (SignOutResponse);
 }
 
+option go_package = "pkg/proto;authProto";
+
 message User {
   string id = 1;
   string name = 2;
