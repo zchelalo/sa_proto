@@ -4,6 +4,7 @@ service AuthService {
   rpc signIn (SignInRequest) returns (SignInResponse);
   rpc signUp (SignUpRequest) returns (SignUpResponse);
   rpc signOut (SignOutRequest) returns (SignOutResponse);
+  rpc isAuthorized (IsAuthorizedRequest) returns (IsAuthorizedResponse);
 }
 
 option go_package = "pkg/proto;authProto";
@@ -58,6 +59,18 @@ message SignOutRequest {
 message SignOutResponse {
   oneof result {
     bool success = 1;
+    Error error = 2;
+  }
+}
+
+message IsAuthorizedRequest {
+  string accessToken = 1;
+  string refreshToken = 2;
+}
+
+message IsAuthorizedResponse {
+  oneof result {
+    bool isAuthorized = 1;
     Error error = 2;
   }
 }
