@@ -9,7 +9,7 @@ service AuthService {
 
 option go_package = "pkg/proto;authProto";
 
-message User {
+message AuthUser {
   string id = 1;
   string name = 2;
   string email = 3;
@@ -19,7 +19,7 @@ message User {
 message Auth {
   string accessToken = 1;
   string refreshToken = 2;
-  User user = 3;
+  AuthUser user = 3;
 }
 
 message Tokens {

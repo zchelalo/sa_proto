@@ -11,7 +11,7 @@ service UserService {
 
 option go_package = "pkg/proto;userProto";
 
-message User {
+message UserData {
   string id = 1;
   string name = 2;
   string email = 3;
@@ -34,7 +34,7 @@ message Meta {
 }
 
 message UsersWithMeta {
-  repeated User users = 1;
+  repeated UserData users = 1;
   Meta meta = 2;
 }
 
@@ -49,7 +49,7 @@ message GetUserRequest {
 
 message GetUserResponse {
   oneof result {
-    User user = 1;
+    UserData user = 1;
     UserError error = 2;
   }
 }
@@ -85,7 +85,7 @@ message CreateUserRequest {
 
 message CreateUserResponse {
   oneof result {
-    User user = 1;
+    UserData user = 1;
     UserError error = 2;
   }
 }
@@ -100,7 +100,7 @@ message UpdateUserRequest {
 
 message UpdateUserResponse {
   oneof result {
-    User user = 1;
+    UserData user = 1;
     UserError error = 2;
   }
 }
