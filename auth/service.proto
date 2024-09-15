@@ -22,6 +22,16 @@ message Auth {
   User user = 3;
 }
 
+message Tokens {
+  string accessToken = 1;
+  string refreshToken = 2;
+}
+
+message IsAuth {
+  bool isAuthorized = 1;
+  optional Tokens tokens = 2;
+}
+
 message Error {
   int32 code = 1; // Código de error, como los códigos de estado HTTP
   string message = 2; // Mensaje de error descriptivo
@@ -70,7 +80,7 @@ message IsAuthorizedRequest {
 
 message IsAuthorizedResponse {
   oneof result {
-    bool isAuthorized = 1;
+    IsAuth data = 1;
     Error error = 2;
   }
 }
