@@ -32,7 +32,7 @@ message IsAuth {
   optional Tokens tokens = 2;
 }
 
-message Error {
+message AuthError {
   int32 code = 1; // Código de error, como los códigos de estado HTTP
   string message = 2; // Mensaje de error descriptivo
 }
@@ -45,7 +45,7 @@ message SignInRequest {
 message SignInResponse {
   oneof result {
     Auth auth = 1;
-    Error error = 2;
+    AuthError error = 2;
   }
 }
 
@@ -58,7 +58,7 @@ message SignUpRequest {
 message SignUpResponse {
   oneof result {
     Auth auth = 1;
-    Error error = 2;
+    AuthError error = 2;
   }
 }
 
@@ -69,7 +69,7 @@ message SignOutRequest {
 message SignOutResponse {
   oneof result {
     bool success = 1;
-    Error error = 2;
+    AuthError error = 2;
   }
 }
 
@@ -81,6 +81,6 @@ message IsAuthorizedRequest {
 message IsAuthorizedResponse {
   oneof result {
     IsAuth data = 1;
-    Error error = 2;
+    AuthError error = 2;
   }
 }

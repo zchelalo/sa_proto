@@ -38,7 +38,7 @@ message UsersWithMeta {
   Meta meta = 2;
 }
 
-message Error {
+message UserError {
   int32 code = 1; // Código de error, como los códigos de estado HTTP
   string message = 2; // Mensaje de error descriptivo
 }
@@ -50,7 +50,7 @@ message GetUserRequest {
 message GetUserResponse {
   oneof result {
     User user = 1;
-    Error error = 2;
+    UserError error = 2;
   }
 }
 
@@ -61,7 +61,7 @@ message GetUserToAuthRequest {
 message GetUserToAuthResponse {
   oneof result {
     UserWithPassword user = 1;
-    Error error = 2;
+    UserError error = 2;
   }
 }
 
@@ -73,7 +73,7 @@ message GetUsersRequest {
 message GetUsersResponse {
   oneof result {
     UsersWithMeta data = 1;
-    Error error = 2;
+    UserError error = 2;
   }
 }
 
@@ -86,7 +86,7 @@ message CreateUserRequest {
 message CreateUserResponse {
   oneof result {
     User user = 1;
-    Error error = 2;
+    UserError error = 2;
   }
 }
 
@@ -101,7 +101,7 @@ message UpdateUserRequest {
 message UpdateUserResponse {
   oneof result {
     User user = 1;
-    Error error = 2;
+    UserError error = 2;
   }
 }
 
@@ -112,6 +112,6 @@ message DeleteUserRequest {
 message DeleteUserResponse {
   oneof result {
     bool success = 1;
-    Error error = 2;
+    UserError error = 2;
   }
 }
