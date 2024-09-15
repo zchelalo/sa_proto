@@ -19,14 +19,14 @@ message AuthUser {
 message Auth {
   string accessToken = 1;
   string refreshToken = 2;
-  string expiresAt = 3;
+  int64 expiresAt = 3;
   AuthUser user = 4;
 }
 
 message Tokens {
   string accessToken = 1;
   string refreshToken = 2;
-  string expiresAt = 3;
+  optional int64 expiresAt = 3;
 }
 
 message IsAuth {
