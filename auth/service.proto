@@ -31,7 +31,8 @@ message Tokens {
 
 message IsAuth {
   bool isAuthorized = 1;
-  optional Tokens tokens = 2;
+  optional string userId = 2;
+  optional Tokens tokens = 3;
 }
 
 message AuthError {
