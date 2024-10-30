@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+service ClassService {
+  rpc createClass (CreateClassRequest) returns (CreateClassResponse);
+  // rpc joinClass (JoinClassRequest) returns (JoinClassResponse);
+  // rpc listClasses (ListClassesRequest) returns (ListClassesResponse);
+}
+
+option go_package = "pkg/proto;classProto";
+
+message ClassData {
+  string id = 1;
+}
+
+message Meta {
+  int32 page = 1;
+  int32 perPage = 2;
+  int32 count = 3;
+  int32 totalCount = 4;
+}
+
+message ClassesWithMeta {
+  repeated ClassData classes = 1;
+  Meta meta = 2;
+}
+
+message ClassError {
+  int32 code = 1;
+  string message = 2;
+}
+
+message CreateClassRequest {
+  string userId = 1;
+}
+
+message CreateClassResponse {
+  oneof result {
+    ClassData class = 1;
+    ClassError error = 2;
+  }
+}
