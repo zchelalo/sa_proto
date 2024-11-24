@@ -26,7 +26,7 @@ message UserWithPassword {
   bool verified = 5;
 }
 
-message Meta {
+message UserMeta {
   int32 page = 1;
   int32 perPage = 2;
   int32 count = 3;
@@ -35,7 +35,7 @@ message Meta {
 
 message UsersWithMeta {
   repeated UserData users = 1;
-  Meta meta = 2;
+  UserMeta meta = 2;
 }
 
 message UserError {
