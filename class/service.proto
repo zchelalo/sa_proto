@@ -4,6 +4,7 @@ service ClassService {
   rpc createClass (CreateClassRequest) returns (CreateClassResponse);
   rpc joinClass (JoinClassRequest) returns (JoinClassResponse);
   rpc listClasses (ListClassesRequest) returns (ListClassesResponse);
+  rpc getClassCode (GetClassCodeRequest) returns (GetClassCodeResponse);
 }
 
 option go_package = "pkg/proto;classProto";
@@ -68,6 +69,18 @@ message ListClassesRequest {
 message ListClassesResponse {
   oneof result {
     ClassesWithMeta classes = 1;
+    ClassError error = 2;
+  }
+}
+
+message GetClassCodeRequest {
+  string userId = 1;
+  string classId = 2;
+}
+
+message GetClassCodeResponse {
+  oneof result {
+    string code = 1;
     ClassError error = 2;
   }
 }
