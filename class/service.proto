@@ -25,7 +25,7 @@ message ClassMeta {
 }
 
 message ClassesWithMeta {
-  repeated ClassData data = 1;
+  repeated ClassData classes = 1;
   ClassMeta meta = 2;
 }
 
@@ -68,7 +68,7 @@ message ListClassesRequest {
 
 message ListClassesResponse {
   oneof result {
-    ClassesWithMeta classes = 1;
+    ClassesWithMeta data = 1;
     ClassError error = 2;
   }
 }
