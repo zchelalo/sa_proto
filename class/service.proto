@@ -25,7 +25,7 @@ message ClassMeta {
 }
 
 message ClassesWithMeta {
-  repeated ClassData classes = 1;
+  repeated ClassData data = 1;
   ClassMeta meta = 2;
 }
 
