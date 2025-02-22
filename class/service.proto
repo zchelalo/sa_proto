@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-package class;
-
 option go_package = "pkg/proto;classProto";
 
 service ClassService {
