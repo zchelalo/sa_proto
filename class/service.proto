@@ -1,13 +1,15 @@
 syntax = "proto3";
 
+package class;
+
+option go_package = "pkg/proto;classProto";
+
 service ClassService {
   rpc createClass (CreateClassRequest) returns (CreateClassResponse);
   rpc joinClass (JoinClassRequest) returns (JoinClassResponse);
   rpc listClasses (ListClassesRequest) returns (ListClassesResponse);
   rpc getClassCode (GetClassCodeRequest) returns (GetClassCodeResponse);
 }
-
-option go_package = "pkg/proto;classProto";
 
 message ClassData {
   string id = 1;

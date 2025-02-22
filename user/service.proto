@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+package user;
+
+option go_package = "pkg/proto;userProto";
+
 service UserService {
   rpc getUser (GetUserRequest) returns (GetUserResponse);
   rpc getUserToAuth (GetUserToAuthRequest) returns (GetUserToAuthResponse);
@@ -8,8 +12,6 @@ service UserService {
   rpc updateUser (UpdateUserRequest) returns (UpdateUserResponse);
   rpc deleteUser (DeleteUserRequest) returns (DeleteUserResponse);
 }
-
-option go_package = "pkg/proto;userProto";
 
 message UserData {
   string id = 1;
