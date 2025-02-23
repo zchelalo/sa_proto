@@ -1,6 +1,10 @@
 syntax = "proto3";
 
-option go_package = "pkg/proto;classProto";
+package class;
+
+import "shared.proto";
+
+option go_package = "pkg/proto;proto";
 
 service ClassService {
   rpc createClass (CreateClassRequest) returns (CreateClassResponse);
@@ -17,21 +21,9 @@ message ClassData {
   string code = 5;
 }
 
-message ClassMeta {
-  int32 page = 1;
-  int32 perPage = 2;
-  int32 count = 3;
-  int32 totalCount = 4;
-}
-
 message ClassesWithMeta {
   repeated ClassData classes = 1;
-  ClassMeta meta = 2;
-}
-
-message ClassError {
-  int32 code = 1;
-  string message = 2;
+  shared.Meta meta = 2;
 }
 
 message CreateClassRequest {
@@ -44,7 +36,7 @@ message CreateClassRequest {
 message CreateClassResponse {
   oneof result {
     ClassData class = 1;
-    ClassError error = 2;
+    shared.Error error = 2;
   }
 }
 
@@ -56,7 +48,7 @@ message JoinClassRequest {
 message JoinClassResponse {
   oneof result {
     ClassData class = 1;
-    ClassError error = 2;
+    shared.Error error = 2;
   }
 }
 
@@ -69,7 +61,7 @@ message ListClassesRequest {
 message ListClassesResponse {
   oneof result {
     ClassesWithMeta data = 1;
-    ClassError error = 2;
+    shared.Error error = 2;
   }
 }
 
@@ -81,6 +73,6 @@ message GetClassCodeRequest {
 message GetClassCodeResponse {
   oneof result {
     string code = 1;
-    ClassError error = 2;
+    shared.Error error = 2;
   }
 }

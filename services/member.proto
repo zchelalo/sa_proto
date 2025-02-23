@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package member;
+
+import "user.proto";
+import "shared.proto";
+
+option go_package = "pkg/proto;proto";
+
+service MemberService {
+  rpc listMembers (ListMembersRequest) returns (ListMembersResponse);
+}
+
+message MemberRoleData {
+  string id = 1;
+  string key = 2;
+}
+
+message MemberData {
+  string id = 1;
+  user.UserData user = 2;
+  MemberRoleData role = 3;
+}
+
+message MembersWithMeta {
+  repeated MemberData members = 1;
+  shared.Meta meta = 2;
+}
+
+message ListMembersRequest {
+  string userId = 1;
+  string classId = 2;
+  int32 page = 3;
+  int32 limit = 4;
+}
+
+message ListMembersResponse {
+  oneof result {
+    MembersWithMeta data = 1;
+    shared.Error error = 2;
+  }
+}

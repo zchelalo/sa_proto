@@ -1,5 +1,12 @@
 syntax = "proto3";
 
+package auth;
+
+import "user.proto";
+import "shared.proto";
+
+option go_package = "pkg/proto;proto";
+
 service AuthService {
   rpc signIn (SignInRequest) returns (SignInResponse);
   rpc signUp (SignUpRequest) returns (SignUpResponse);
@@ -7,20 +14,11 @@ service AuthService {
   rpc isAuthorized (IsAuthorizedRequest) returns (IsAuthorizedResponse);
 }
 
-option go_package = "pkg/proto;authProto";
-
-message AuthUser {
-  string id = 1;
-  string name = 2;
-  string email = 3;
-  bool verified = 4;
-}
-
 message Auth {
   string accessToken = 1;
   string refreshToken = 2;
   int64 expiresAt = 3;
-  AuthUser user = 4;
+  user.UserData user = 4;
 }
 
 message Tokens {
@@ -35,11 +33,6 @@ message IsAuth {
   optional Tokens tokens = 3;
 }
 
-message AuthError {
-  int32 code = 1; // Código de error, como los códigos de estado HTTP
-  string message = 2; // Mensaje de error descriptivo
-}
-
 message SignInRequest {
   string email = 1;
   string password = 2;
@@ -48,7 +41,7 @@ message SignInRequest {
 message SignInResponse {
   oneof result {
     Auth auth = 1;
-    AuthError error = 2;
+    shared.Error error = 2;
   }
 }
 
@@ -61,7 +54,7 @@ message SignUpRequest {
 message SignUpResponse {
   oneof result {
     Auth auth = 1;
-    AuthError error = 2;
+    shared.Error error = 2;
   }
 }
 
@@ -72,7 +65,7 @@ message SignOutRequest {
 message SignOutResponse {
   oneof result {
     bool success = 1;
-    AuthError error = 2;
+    shared.Error error = 2;
   }
 }
 
@@ -84,6 +77,6 @@ message IsAuthorizedRequest {
 message IsAuthorizedResponse {
   oneof result {
     IsAuth data = 1;
-    AuthError error = 2;
+    shared.Error error = 2;
   }
 }

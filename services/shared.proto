@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package shared;
+
+option go_package = "pkg/proto;proto";
+
+message Meta {
+  int32 page = 1;
+  int32 perPage = 2;
+  int32 count = 3;
+  int32 totalCount = 4;
+}
+
+message Error {
+  int32 code = 1;
+  string message = 2;
+}
